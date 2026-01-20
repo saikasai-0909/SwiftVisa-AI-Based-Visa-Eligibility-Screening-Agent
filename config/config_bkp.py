@@ -1,0 +1,96 @@
+
+"""
+SwiftVisa - Configuration Settings
+Central configuration for all components
+"""
+
+import os
+from pathlib import Path
+
+# Base paths
+BASE_DIR = Path(__file__).parent.parent
+DATA_DIR = BASE_DIR / "data"
+VECTORSTORE_DIR = BASE_DIR / "vectorstore"
+MODELS_DIR = BASE_DIR / "models"
+LOGS_DIR = BASE_DIR / "logs"
+
+# LM Studio Configuration
+LM_STUDIO_CONFIG = {
+    "base_url": "http://192.168.1.19:1234/v1",
+    "model": "meta-llama-3.2-8b-instruct",
+    "temperature": 0.3,
+    "max_tokens": 800,  # Reduced from 1000 to leave more room for context
+    "top_p": 0.9,
+}
+
+# Embedding Model Configuration
+EMBEDDING_CONFIG = {
+    "model_name": "all-MiniLM-L6-v2",
+    "cache_dir": str(MODELS_DIR / "sentence_transformer"),
+    "batch_size": 32,
+}
+
+# FAISS Configuration
+FAISS_CONFIG = {
+    "index_path": str(VECTORSTORE_DIR / "faiss_index"),
+    "similarity_metric": "cosine",  # cosine or euclidean
+}
+
+# Retrieval Configuration
+RETRIEVAL_CONFIG = {
+    "top_k": 5,  # Reduced from 5 to prevent context overflow
+    "score_threshold": 0.3,  # Minimum similarity score
+    "rerank": True,  # Whether to rerank results
+    "max_context_chars": 3000,  # Maximum characters for LLM context
+}
+
+# RAG Prompt Templates
+SYSTEM_PROMPT = """You are an expert UK visa eligibility assistant. Your role is to help users understand their visa eligibility based on official UK government immigration policies.
+
+INSTRUCTIONS:
+1. Use ONLY the provided policy context to answer questions
+2. Be accurate and cite specific requirements when possible
+3. If information is not in the context, don't halucinate or guess, say missing information
+4. Provide clear, structured answers
+5. Include relevant warnings or important conditions
+6. Be helpful but honest about limitations
+
+IMPORTANT:
+- Do not make up information
+- Do not provide legal advice
+- Encourage users to verify with official sources for final decisions"""
+
+USER_PROMPT_TEMPLATE = """Based on the following UK visa policy information, please answer the user's question.
+
+POLICY CONTEXT:
+{context}
+
+USER QUESTION:
+{question}
+
+Please provide a clear, accurate answer based only on the policy context above. If the context doesn't contain enough information to answer the question, say so."""
+
+ELIGIBILITY_PROMPT_TEMPLATE = """Based on the following UK visa policy information and user profile, evaluate the visa eligibility.
+
+POLICY CONTEXT:
+{context}
+
+USER PROFILE:
+{user_profile}
+
+VISA TYPE: {visa_type}
+
+Please evaluate:
+if eligible say only Eligible don't give any further explanation
+if not eligible list potential Issues summarized explanation."""
+
+# Logging Configuration
+LOGGING_CONFIG = {
+    "level": "INFO",
+    "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    "log_file": str(LOGS_DIR / "rag_pipeline.log"),
+}
+
+# Create directories if they don't exist
+for directory in [DATA_DIR, VECTORSTORE_DIR, MODELS_DIR, LOGS_DIR]:
+    directory.mkdir(parents=True, exist_ok=True)

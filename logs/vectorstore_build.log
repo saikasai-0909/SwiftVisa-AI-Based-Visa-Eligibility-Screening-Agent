@@ -1,0 +1,244 @@
+2026-01-09 19:23:07,844 - INFO - Use pytorch device_name: cpu
+2026-01-09 19:23:07,844 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-01-09 19:23:10,410 - WARNING - Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+2026-01-09 19:23:31,730 - INFO - ================================================================================
+2026-01-09 19:27:28,201 - INFO - [MODEL] Loading embedding model: all-MiniLM-L6-v2
+2026-01-09 19:27:28,208 - INFO - Use pytorch device_name: cpu
+2026-01-09 19:27:28,208 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-01-09 19:27:32,397 - INFO - [SUCCESS] Model loaded. Embedding dimension: 384
+2026-01-09 19:27:32,398 - INFO - [START] Starting Complete Vector Store Build Pipeline
+2026-01-09 19:27:32,398 - INFO - ================================================================================
+2026-01-09 19:27:32,399 - INFO - 
+[STEP 1] Chunking Documents
+2026-01-09 19:27:32,409 - ERROR - [ERROR] No chunks created. Exiting.
+2026-01-09 19:30:23,301 - INFO - [MODEL] Loading embedding model: all-MiniLM-L6-v2
+2026-01-09 19:30:23,304 - INFO - Use pytorch device_name: cpu
+2026-01-09 19:30:23,304 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-01-09 19:30:28,193 - INFO - [SUCCESS] Model loaded. Embedding dimension: 384
+2026-01-09 19:30:28,194 - INFO - [START] Starting Complete Vector Store Build Pipeline
+2026-01-09 19:30:28,195 - INFO - ================================================================================
+2026-01-09 19:30:28,195 - INFO - 
+[STEP 1] Chunking Documents
+2026-01-09 19:30:28,203 - ERROR - [ERROR] No chunks created. Exiting.
+2026-01-09 19:31:32,614 - INFO - [MODEL] Loading embedding model: all-MiniLM-L6-v2
+2026-01-09 19:31:32,616 - INFO - Use pytorch device_name: cpu
+2026-01-09 19:31:32,616 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-01-09 19:31:37,149 - INFO - [SUCCESS] Model loaded. Embedding dimension: 384
+2026-01-09 19:31:37,150 - INFO - [START] Starting Complete Vector Store Build Pipeline
+2026-01-09 19:31:37,150 - INFO - ================================================================================
+2026-01-09 19:31:37,150 - INFO - 
+[STEP 1] Chunking Documents
+2026-01-09 19:31:37,154 - ERROR - [ERROR] No chunks created. Exiting.
+2026-01-09 19:36:02,630 - INFO - [MODEL] Loading embedding model: all-MiniLM-L6-v2
+2026-01-09 19:36:02,633 - INFO - Use pytorch device_name: cpu
+2026-01-09 19:36:02,633 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-01-09 19:36:07,042 - INFO - [SUCCESS] Model loaded. Embedding dimension: 384
+2026-01-09 19:36:07,043 - INFO - [START] Starting Complete Vector Store Build Pipeline
+2026-01-09 19:36:07,043 - INFO - ================================================================================
+2026-01-09 19:36:07,044 - INFO - 
+[STEP 1] Chunking Documents
+2026-01-09 19:36:17,349 - INFO - 
+[STEP 2] Creating Embeddings
+2026-01-09 19:36:17,349 - INFO - [PROCESS] Creating embeddings for 389 chunks...
+2026-01-09 19:36:30,623 - INFO - [SUCCESS] Created embeddings with shape: (389, 384)
+2026-01-09 19:36:30,624 - INFO - 
+[STEP 3] Building FAISS Index
+2026-01-09 19:36:30,624 - INFO - [BUILD] Building FAISS index...
+2026-01-09 19:36:30,627 - INFO - [SUCCESS] FAISS index built. Total vectors: 389
+2026-01-09 19:36:30,627 - INFO - 
+[STEP 4] Saving Vector Store
+2026-01-09 19:36:30,628 - INFO - [SAVE] Saving vector store to: vectorstore/faiss_index
+2026-01-09 19:36:30,632 - INFO - [SUCCESS] FAISS index saved: vectorstore/faiss_index\index.faiss
+2026-01-09 19:36:30,636 - INFO - [SUCCESS] Chunks metadata saved: vectorstore/faiss_index\index.pkl
+2026-01-09 19:36:30,637 - INFO - [SUCCESS] Build metadata saved: vectorstore\metadata.json
+2026-01-09 19:36:30,638 - INFO - 
+[STEP 5] Testing Retrieval
+2026-01-09 19:36:30,638 - INFO - 
+[TEST] Testing search with query: 'What are the requirements for a student visa?'
+2026-01-09 19:36:30,668 - INFO - 
+[TEST] Testing search with query: 'How much money do I need for a graduate visa?'
+2026-01-09 19:36:30,690 - INFO - 
+[TEST] Testing search with query: 'Can I work with a visitor visa?'
+2026-01-09 19:36:30,709 - INFO - 
+[SUCCESS] Vector Store Build Complete!
+2026-01-09 19:36:30,710 - INFO - ================================================================================
+2026-01-09 19:36:30,710 - INFO - [SUMMARY] Statistics:
+2026-01-09 19:36:30,710 - INFO -   * Total chunks: 389
+2026-01-09 19:36:30,711 - INFO -   * Total vectors: 389
+2026-01-09 19:36:30,711 - INFO -   * Embedding dimension: 384
+2026-01-09 19:36:30,711 - INFO -   * Model: all-MiniLM-L6-v2
+2026-01-09 19:36:30,711 - INFO -   * Storage path: vectorstore/faiss_index
+2026-01-09 19:36:30,711 - INFO - ================================================================================
+2026-01-09 19:39:00,551 - INFO - [MODEL] Loading embedding model: all-MiniLM-L6-v2
+2026-01-09 19:39:00,553 - INFO - Use pytorch device_name: cpu
+2026-01-09 19:39:00,553 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-01-09 19:39:05,119 - INFO - [SUCCESS] Model loaded. Embedding dimension: 384
+2026-01-09 19:39:05,120 - INFO - [LOAD] Loading vector store from: vectorstore/faiss_index
+2026-01-09 19:39:05,159 - INFO - [SUCCESS] FAISS index loaded. Total vectors: 389
+2026-01-09 19:39:05,198 - INFO - [SUCCESS] Chunks metadata loaded. Total chunks: 389
+2026-01-09 19:39:39,883 - INFO - [MODEL] Loading embedding model: all-MiniLM-L6-v2
+2026-01-09 19:39:39,885 - INFO - Use pytorch device_name: cpu
+2026-01-09 19:39:39,885 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-01-09 19:39:44,030 - INFO - [SUCCESS] Model loaded. Embedding dimension: 384
+2026-01-09 19:39:44,031 - INFO - [LOAD] Loading vector store from: vectorstore/faiss_index
+2026-01-09 19:39:44,032 - INFO - [SUCCESS] FAISS index loaded. Total vectors: 389
+2026-01-09 19:39:44,037 - INFO - [SUCCESS] Chunks metadata loaded. Total chunks: 389
+2026-01-09 19:39:53,642 - INFO - 
+[TEST] Testing search with query: 'What are the financial requirements for a student visa?'
+2026-01-09 19:39:53,698 - INFO - 
+[TEST] Testing search with query: 'Can I work while on a student visa?'
+2026-01-09 19:39:53,715 - INFO - 
+[TEST] Testing search with query: 'What documents do I need for student visa application?'
+2026-01-09 19:39:53,735 - INFO - 
+[TEST] Testing search with query: 'How long is the graduate visa valid for?'
+2026-01-09 19:39:53,754 - INFO - 
+[TEST] Testing search with query: 'What are the eligibility criteria for graduate visa?'
+2026-01-09 19:39:53,776 - INFO - 
+[TEST] Testing search with query: 'Can I switch from student to graduate visa?'
+2026-01-09 19:39:53,795 - INFO - 
+[TEST] Testing search with query: 'What is the minimum salary for skilled worker visa?'
+2026-01-09 19:39:53,814 - INFO - 
+[TEST] Testing search with query: 'Do I need a job offer for skilled worker visa?'
+2026-01-09 19:39:53,834 - INFO - 
+[TEST] Testing search with query: 'What occupations are eligible for skilled worker visa?'
+2026-01-09 19:39:53,855 - INFO - 
+[TEST] Testing search with query: 'What are the requirements for health care worker visa?'
+2026-01-09 19:39:53,875 - INFO - 
+[TEST] Testing search with query: 'Is there a fee discount for NHS workers?'
+2026-01-09 19:39:53,894 - INFO - 
+[TEST] Testing search with query: 'What jobs qualify for health care worker visa?'
+2026-01-09 19:39:53,909 - INFO - 
+[TEST] Testing search with query: 'How long can I stay on a visitor visa?'
+2026-01-09 19:39:53,927 - INFO - 
+[TEST] Testing search with query: 'Can I work with a standard visitor visa?'
+2026-01-09 19:39:53,944 - INFO - 
+[TEST] Testing search with query: 'What activities are allowed on visitor visa?'
+2026-01-09 19:40:04,707 - INFO - 
+[TEST] Testing search with query: 'how long can a visitor stay'
+2026-01-09 19:40:46,458 - INFO - 
+[TEST] Testing search with query: 'minimum funds needed as a student for student visa'
+2026-01-09 19:41:18,845 - INFO - 
+[TEST] Testing search with query: 'documents needed for student visa'
+2026-01-09 19:42:43,217 - INFO - [MODEL] Loading embedding model: all-MiniLM-L6-v2
+2026-01-09 19:42:43,219 - INFO - Use pytorch device_name: cpu
+2026-01-09 19:42:43,219 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-01-09 19:42:47,741 - INFO - [SUCCESS] Model loaded. Embedding dimension: 384
+2026-01-09 19:42:47,742 - INFO - [START] Starting Complete Vector Store Build Pipeline
+2026-01-09 19:42:47,743 - INFO - ================================================================================
+2026-01-09 19:42:47,743 - INFO - 
+[STEP 1] Chunking Documents
+2026-01-09 19:42:59,184 - INFO - 
+[STEP 2] Creating Embeddings
+2026-01-09 19:42:59,184 - INFO - [PROCESS] Creating embeddings for 284 chunks...
+2026-01-09 19:43:09,961 - INFO - [SUCCESS] Created embeddings with shape: (284, 384)
+2026-01-09 19:43:09,961 - INFO - 
+[STEP 3] Building FAISS Index
+2026-01-09 19:43:09,961 - INFO - [BUILD] Building FAISS index...
+2026-01-09 19:43:09,962 - INFO - [SUCCESS] FAISS index built. Total vectors: 284
+2026-01-09 19:43:09,962 - INFO - 
+[STEP 4] Saving Vector Store
+2026-01-09 19:43:09,962 - INFO - [SAVE] Saving vector store to: vectorstore/faiss_index
+2026-01-09 19:43:09,963 - INFO - [SUCCESS] FAISS index saved: vectorstore/faiss_index\index.faiss
+2026-01-09 19:43:09,966 - INFO - [SUCCESS] Chunks metadata saved: vectorstore/faiss_index\index.pkl
+2026-01-09 19:43:09,967 - INFO - [SUCCESS] Build metadata saved: vectorstore\metadata.json
+2026-01-09 19:43:09,967 - INFO - 
+[STEP 5] Testing Retrieval
+2026-01-09 19:43:09,967 - INFO - 
+[TEST] Testing search with query: 'What are the requirements for a student visa?'
+2026-01-09 19:43:09,989 - INFO - 
+[TEST] Testing search with query: 'How much money do I need for a graduate visa?'
+2026-01-09 19:43:10,006 - INFO - 
+[TEST] Testing search with query: 'Can I work with a visitor visa?'
+2026-01-09 19:43:10,022 - INFO - 
+[SUCCESS] Vector Store Build Complete!
+2026-01-09 19:43:10,022 - INFO - ================================================================================
+2026-01-09 19:43:10,023 - INFO - [SUMMARY] Statistics:
+2026-01-09 19:43:10,023 - INFO -   * Total chunks: 284
+2026-01-09 19:43:10,023 - INFO -   * Total vectors: 284
+2026-01-09 19:43:10,023 - INFO -   * Embedding dimension: 384
+2026-01-09 19:43:10,023 - INFO -   * Model: all-MiniLM-L6-v2
+2026-01-09 19:43:10,023 - INFO -   * Storage path: vectorstore/faiss_index
+2026-01-09 19:43:10,024 - INFO - ================================================================================
+2026-01-09 19:43:26,761 - INFO - [MODEL] Loading embedding model: all-MiniLM-L6-v2
+2026-01-09 19:43:26,763 - INFO - Use pytorch device_name: cpu
+2026-01-09 19:43:26,764 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-01-09 19:43:31,053 - INFO - [SUCCESS] Model loaded. Embedding dimension: 384
+2026-01-09 19:43:31,054 - INFO - [LOAD] Loading vector store from: vectorstore/faiss_index
+2026-01-09 19:43:31,152 - INFO - [SUCCESS] FAISS index loaded. Total vectors: 284
+2026-01-09 19:43:31,168 - INFO - [SUCCESS] Chunks metadata loaded. Total chunks: 284
+2026-01-09 19:43:38,918 - INFO - 
+[TEST] Testing search with query: 'What are the financial requirements for a student visa?'
+2026-01-09 19:43:38,960 - INFO - 
+[TEST] Testing search with query: 'Can I work while on a student visa?'
+2026-01-09 19:43:38,985 - INFO - 
+[TEST] Testing search with query: 'What documents do I need for student visa application?'
+2026-01-09 19:43:39,005 - INFO - 
+[TEST] Testing search with query: 'How long is the graduate visa valid for?'
+2026-01-09 19:43:39,025 - INFO - 
+[TEST] Testing search with query: 'What are the eligibility criteria for graduate visa?'
+2026-01-09 19:43:39,043 - INFO - 
+[TEST] Testing search with query: 'Can I switch from student to graduate visa?'
+2026-01-09 19:43:39,060 - INFO - 
+[TEST] Testing search with query: 'What is the minimum salary for skilled worker visa?'
+2026-01-09 19:43:39,079 - INFO - 
+[TEST] Testing search with query: 'Do I need a job offer for skilled worker visa?'
+2026-01-09 19:43:39,102 - INFO - 
+[TEST] Testing search with query: 'What occupations are eligible for skilled worker visa?'
+2026-01-09 19:43:39,129 - INFO - 
+[TEST] Testing search with query: 'What are the requirements for health care worker visa?'
+2026-01-09 19:43:39,151 - INFO - 
+[TEST] Testing search with query: 'Is there a fee discount for NHS workers?'
+2026-01-09 19:43:39,166 - INFO - 
+[TEST] Testing search with query: 'What jobs qualify for health care worker visa?'
+2026-01-09 19:43:39,187 - INFO - 
+[TEST] Testing search with query: 'How long can I stay on a visitor visa?'
+2026-01-09 19:43:39,205 - INFO - 
+[TEST] Testing search with query: 'Can I work with a standard visitor visa?'
+2026-01-09 19:43:39,224 - INFO - 
+[TEST] Testing search with query: 'What activities are allowed on visitor visa?'
+2026-01-09 19:44:15,273 - INFO - 
+[TEST] Testing search with query: 'can i work with visitor visa?'
+2026-01-09 19:44:44,250 - INFO - 
+[TEST] Testing search with query: 'funds needed to get student visa'
+2026-01-09 19:45:11,282 - INFO - 
+[TEST] Testing search with query: 'documents needed for student visa'
+2026-01-11 14:54:39,529 - INFO - [MODEL] Loading embedding model: all-MiniLM-L6-v2
+2026-01-11 14:54:39,531 - INFO - Use pytorch device_name: cpu
+2026-01-11 14:54:39,532 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-01-11 14:54:43,272 - INFO - [SUCCESS] Model loaded. Embedding dimension: 384
+2026-01-11 14:54:43,273 - INFO - [START] Starting Complete Vector Store Build Pipeline
+2026-01-11 14:54:43,273 - INFO - ================================================================================
+2026-01-11 14:54:43,273 - INFO - 
+[STEP 1] Chunking Documents
+2026-01-11 14:54:49,725 - INFO - 
+[STEP 2] Creating Embeddings
+2026-01-11 14:54:49,726 - INFO - [PROCESS] Creating embeddings for 284 chunks...
+2026-01-11 14:54:58,489 - INFO - [SUCCESS] Created embeddings with shape: (284, 384)
+2026-01-11 14:54:58,490 - INFO - 
+[STEP 3] Building FAISS Index
+2026-01-11 14:54:58,490 - INFO - [BUILD] Building FAISS index...
+2026-01-11 14:54:58,491 - INFO - [SUCCESS] FAISS index built. Total vectors: 284
+2026-01-11 14:54:58,491 - INFO - 
+[STEP 4] Saving Vector Store
+2026-01-11 14:54:58,492 - INFO - [SAVE] Saving vector store to: vectorstore/faiss_index
+2026-01-11 14:54:58,494 - INFO - [SUCCESS] FAISS index saved: vectorstore/faiss_index\index.faiss
+2026-01-11 14:54:58,497 - INFO - [SUCCESS] Chunks metadata saved: vectorstore/faiss_index\index.pkl
+2026-01-11 14:54:58,498 - INFO - [SUCCESS] Build metadata saved: vectorstore\metadata.json
+2026-01-11 14:54:58,498 - INFO - 
+[STEP 5] Testing Retrieval
+2026-01-11 14:54:58,498 - INFO - 
+[TEST] Testing search with query: 'What are the requirements for a student visa?'
+2026-01-11 14:54:58,522 - INFO - 
+[TEST] Testing search with query: 'How much money do I need for a graduate visa?'
+2026-01-11 14:54:58,535 - INFO - 
+[TEST] Testing search with query: 'Can I work with a visitor visa?'
+2026-01-11 14:54:58,552 - INFO - 
+[SUCCESS] Vector Store Build Complete!
+2026-01-11 14:54:58,552 - INFO - ================================================================================
+2026-01-11 14:54:58,553 - INFO - [SUMMARY] Statistics:
+2026-01-11 14:54:58,553 - INFO -   * Total chunks: 284
+2026-01-11 14:54:58,553 - INFO -   * Total vectors: 284
+2026-01-11 14:54:58,553 - INFO -   * Embedding dimension: 384
+2026-01-11 14:54:58,553 - INFO -   * Model: all-MiniLM-L6-v2
+2026-01-11 14:54:58,553 - INFO -   * Storage path: vectorstore/faiss_index
+2026-01-11 14:54:58,553 - INFO - ================================================================================

@@ -1,0 +1,8 @@
+# requirements.txt
+langchain
+langchain-community
+pypdf2
+sentence-transformers
+faiss-cpu
+streamlit
+python-dotenv

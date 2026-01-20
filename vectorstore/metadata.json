@@ -1,0 +1,22 @@
+{
+  "build_date": "2026-01-11T14:54:58.497481",
+  "model_name": "all-MiniLM-L6-v2",
+  "embedding_dim": 384,
+  "total_chunks": 284,
+  "total_vectors": 284,
+  "visa_types": [
+    "graduate",
+    "health_care_worker",
+    "skilled_worker",
+    "visitor",
+    "student"
+  ],
+  "chunks_per_visa": {
+    "graduate": 27,
+    "health_care_worker": 75,
+    "skilled_worker": 82,
+    "visitor": 55,
+    "student": 45
+  },
+  "source_docs": 5
+}
