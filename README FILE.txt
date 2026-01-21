@@ -1,5 +1,7 @@
 README FILE
 
+**"NOTE- INSTRUCTION FOR RUNNING THE PROJECT ": INSTALL ALL DEPENDENCIES AND THEN RUN embedding.ipynb ONCE FOR GENERATING THE EMBEDDING IN VECTOR DATABSE (since it caused error while pushing) AND THEN RUN THE app.py TO SUCESSFULLY RUN THE PROJECT.**
+
 SwiftVisa — A Visa Eligibility Assistant (RAG + LLM + Streamlit)
 
 SwiftVisa is an intelligent visa eligibility assistant built for providing grounded, explainable and non-hallucinatory responses based on official VISA policy documents. It help to surf across many Visa Categories for various countries using a Retrieval-Augmented Generation (RAG) architecture. 
