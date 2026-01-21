@@ -1,0 +1,10 @@
+google-genai
+# Project dependencies for hybrid chunking
+tiktoken
+sentence-transformers
+chromadb
+pdfplumber
+scikit-learn
+tqdm
+numpy
+nltk
