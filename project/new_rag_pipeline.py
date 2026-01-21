@@ -1,7 +1,7 @@
 import os
 import json
 import chromadb
-import google.generativeai as genai
+# import google.generativeai as genai
 
 # --- CONFIGURATION ---
 api_key = os.getenv("GEMINI_KEY") 
@@ -84,4 +84,5 @@ def run_rag_pipeline(user_profile: dict):
             "confidence_score": 0,
             "checklist": [],
             "next_steps": []
+
         }
