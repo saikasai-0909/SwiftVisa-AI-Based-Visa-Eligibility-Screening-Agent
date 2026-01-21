@@ -15,7 +15,7 @@ LOGS_DIR = BASE_DIR / "logs"
 
 # LM Studio Configuration
 LM_STUDIO_CONFIG = {
-    "base_url": "http://192.168.1.196:1234/v1",
+    "base_url": "http://192.168.1.23:1234/v1",
     "model": "meta-llama-3.2-3b-instruct",
     "temperature": 0.3,
     "max_tokens": 500,  # Reduced from 800 for smaller model

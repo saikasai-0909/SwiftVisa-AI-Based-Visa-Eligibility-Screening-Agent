@@ -203,16 +203,56 @@ html, body, [class*="css"] {
     color: #1F2933;
 }
 
+.requirements-box {
+    background-color: #F9FAFB;
+    border: 1px solid #E5E7EB;
+    border-radius: 6px;
+    padding: 1.25rem;
+    margin-top: 1.5rem;
+}
+
+.requirements-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1F2933;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.requirements-title i {
+    color: #C80730;
+}
+
+.requirements-list {
+    margin: 0;
+    padding-left: 1.5rem;
+}
+
+.requirements-list li {
+    margin-bottom: 0.5rem;
+    color: #4B5563;
+    line-height: 1.5;
+}
+
+.requirements-list li:last-child {
+    margin-bottom: 0;
+}
+
+.info-note {
+    background-color: #EFF6FF;
+    border: 1px solid #93C5FD;
+    border-radius: 6px;
+    padding: 1rem;
+    margin-top: 1rem;
+    font-size: 13px;
+    color: #1E40AF;
+}
+
 .critical-issues {
     background-color: #FEE2E2;
     border-left: 3px solid #DC2626;
-    padding: 1rem;
-    margin-top: 1rem;
-    border-radius: 4px;
-}
-
-.requirements-section {
-    background-color: #F9FAFB;
     padding: 1rem;
     margin-top: 1rem;
     border-radius: 4px;
@@ -275,81 +315,114 @@ def crop_card_image(image_path, target_width=200, target_height=120):
         return None
 
 # --------------------------------------------------
-# ELIGIBILITY PARSER (STRICT VERSION)
+# ELIGIBILITY PARSER - DIRECT FROM LLM RESPONSE
 # --------------------------------------------------
 def parse_eligibility(evaluation_text):
-    """Parse evaluation - STRICT but fair logic"""
+    """Parse evaluation directly from LLM response by looking for 'verdict:' line"""
     evaluation_lower = evaluation_text.lower()
     
-    # Strong POSITIVE indicators
-    positive_strong = [
-        "meets all requirements",
-        "appears eligible",
-        "likely eligible",
-        "all requirements are met",
-        "satisfies all",
-        "appears to meet all",
-        "seems to qualify",
-        "qualifies for"
-    ]
+    # First, try to find the verdict line
+    lines = evaluation_text.split('\n')
+    verdict_line = None
+    verdict_value = None
     
-    # Strong NEGATIVE indicators
-    negative_strong = [
-        "not eligible",
-        "does not meet",
-        "insufficient funds",
-        "below the required",
-        "critical requirement",
-        "does not qualify",
-        "cannot qualify",
-        "ineligible"
-    ]
+    for line in lines:
+        if line.lower().startswith('verdict:'):
+            verdict_line = line
+            # Extract the verdict value
+            parts = line.split(':', 1)
+            if len(parts) > 1:
+                verdict_value = parts[1].strip()
+            break
     
-    # Count indicators
-    positive_count = sum(1 for phrase in positive_strong if phrase in evaluation_lower)
-    negative_count = sum(1 for phrase in negative_strong if phrase in evaluation_lower)
+    # If we found a verdict line, use it
+    if verdict_value:
+        if 'eligible' in verdict_value.lower() and 'not' not in verdict_value.lower():
+            return "ELIGIBLE", "eligible"
+        elif 'not eligible' in verdict_value.lower():
+            return "NOT ELIGIBLE", "error"
+        elif 'unclear' in verdict_value.lower():
+            return "NEEDS REVIEW", "warning"
     
-    # Clear positive verdict
-    if positive_count >= 2 and negative_count == 0:
-        return "LIKELY ELIGIBLE", "eligible"
+    # Fallback: Look for keywords if no explicit verdict line
+    if 'eligible' in evaluation_lower:
+        if 'not eligible' in evaluation_lower:
+            return "NOT ELIGIBLE", "error"
+        elif 'likely eligible' in evaluation_lower or 'appears eligible' in evaluation_lower:
+            return "ELIGIBLE", "eligible"
+        else:
+            return "ELIGIBLE", "eligible"
     
-    # Clear negative verdict
-    if negative_count >= 2:
-        return "NOT ELIGIBLE", "error"
+    # More fallback logic
+    positive_indicators = ['meets all requirements', 'satisfies all', 'qualifies for']
+    negative_indicators = ['does not meet', 'insufficient', 'below the required', 'ineligible']
     
-    # Check for partial/needs review indicators
-    review_indicators = [
-        "however",
-        "but",
-        "need to",
-        "should",
-        "must provide",
-        "unclear",
-        "verify",
-        "recommendation"
-    ]
+    pos_count = sum(1 for phrase in positive_indicators if phrase in evaluation_lower)
+    neg_count = sum(1 for phrase in negative_indicators if phrase in evaluation_lower)
     
-    review_count = sum(1 for phrase in review_indicators if phrase in evaluation_lower)
-    
-    # If positive indicators but also review needed
-    if positive_count >= 1 and review_count >= 2:
-        return "NEEDS REVIEW", "warning"
-    
-    # If mostly negative
-    if negative_count >= 1:
-        return "NOT ELIGIBLE", "error"
-    
-    # If has recommendations section, needs review
-    if "recommendation" in evaluation_lower:
-        return "NEEDS REVIEW", "warning"
-    
-    # Default based on overall tone
-    if positive_count > negative_count:
-        return "LIKELY ELIGIBLE", "eligible"
-    elif negative_count > positive_count:
+    if pos_count > neg_count:
+        return "ELIGIBLE", "eligible"
+    elif neg_count > pos_count:
         return "NOT ELIGIBLE", "error"
     else:
         return "NEEDS REVIEW", "warning"
+
+def extract_sections(evaluation_text):
+    """Extract different sections from the evaluation text"""
+    sections = {
+        'explanation': '',
+        'missing_requirements': [],
+        'additional_info': []
+    }
+    
+    text_lower = evaluation_text.lower()
+    lines = evaluation_text.split('\n')
+    
+    # Try to find and extract sections based on common patterns
+    current_section = None
+    for line in lines:
+        line_lower = line.lower().strip()
+        
+        # Skip empty lines and verdict line
+        if not line.strip() or line_lower.startswith('verdict:'):
+            continue
+        
+        # Detect section headers
+        if 'explanation:' in line_lower:
+            current_section = 'explanation'
+            sections['explanation'] = line.split(':', 1)[1].strip() if ':' in line else ''
+            continue
+        elif 'missing requirements:' in line_lower:
+            current_section = 'missing_requirements'
+            continue
+        elif 'additional information needed:' in line_lower:
+            current_section = 'additional_info'
+            continue
+        elif 'eligibility summary:' in line_lower:
+            current_section = 'explanation'
+            sections['explanation'] = line.split(':', 1)[1].strip() if ':' in line else ''
+            continue
+        
+        # Add content to current section
+        if current_section:
+            line_clean = line.strip()
+            if line_clean:
+                if current_section == 'explanation':
+                    sections['explanation'] += ' ' + line_clean
+                elif current_section == 'missing_requirements':
+                    # Clean bullet points
+                    line_clean = line_clean.lstrip('-•* ').strip()
+                    if line_clean:
+                        sections['missing_requirements'].append(line_clean)
+                elif current_section == 'additional_info':
+                    line_clean = line_clean.lstrip('-•* ').strip()
+                    if line_clean:
+                        sections['additional_info'].append(line_clean)
+    
+    # Clean up explanation
+    sections['explanation'] = sections['explanation'].strip()
+    
+    return sections
 
 # --------------------------------------------------
 # INIT RAG
@@ -493,7 +566,7 @@ if not visa_type:
         ("Graduate Visa", "For students who completed eligible UK studies", "assets/graduate.png"),
         ("Skilled Worker Visa", "For skilled professionals with a UK job offer", "assets/skilledworker.png"),
         ("Visitor Visa", "For tourism, business or family visits", "assets/standardvisitor.png"),
-        ("health and care Worker Visa", "For medical professionals in the NHS or social care", "assets/skilledworker.png")   ]
+    ]
     
     for idx, (visa_name, description, image_path) in enumerate(visa_info):
         col = col1 if idx % 2 == 0 else col2
@@ -616,54 +689,73 @@ if submit:
     st.markdown(f"<div class='section-title'>Eligibility Assessment</div>", unsafe_allow_html=True)
     st.markdown("")
 
-    # Parse eligibility
+    # Parse eligibility from LLM response
     status, cls = parse_eligibility(result["evaluation"])
-
+    
     # Map to your original class names
     if cls == "eligible":
-        cls = "result-eligible"
-        title = "Likely Eligible"
+        result_class = "result-eligible"
+        title = "✓ Likely Eligible"
     elif cls == "error":
-        cls = "result-error"
-        title = "Not Eligible"
+        result_class = "result-error"
+        title = "✗ Not Eligible"
     else:
-        cls = "result-warning"
-        title = "Further Review Required"
+        result_class = "result-warning"
+        title = "⚠ Needs Further Review"
 
-    # Clean up the display text - remove verdict line, keep only missing requirements
-    display_text = result["evaluation"]
+    # Extract sections from the evaluation
+    sections = extract_sections(result["evaluation"])
     
-    # Extract only the missing requirements section
-    if "MISSING REQUIREMENTS:" in display_text.upper():
-        try:
-            # Split on missing requirements
-            parts = display_text.upper().split("MISSING REQUIREMENTS:")
-            if len(parts) > 1:
-                # Get everything after "MISSING REQUIREMENTS:"
-                after_header = display_text.split("MISSING REQUIREMENTS:")[1]
-                
-                # Find all bullet points (lines starting with -, •, or *)
-                lines = after_header.split("\n")
-                bullets = []
-                for line in lines:
-                    stripped = line.strip()
-                    if stripped and (stripped.startswith("-") or stripped.startswith("•") or stripped.startswith("*")):
-                        # Clean up the bullet point
-                        clean_line = stripped.lstrip("-•* ").strip()
-                        if clean_line:
-                            bullets.append(f"• {clean_line}")
-                
-                if bullets:
-                    display_text = "\n".join(bullets)
-                else:
-                    display_text = "• None"
-        except:
-            # If parsing fails, just show the original
-            pass
-
+    # Display the verdict
     st.markdown(f"""
-    <div class="result-box {cls}">
+    <div class="result-box {result_class}">
         <div class="result-title">{title}</div>
-        <div class="result-text" style="white-space: pre-line;">{display_text}</div>
+        <div class="result-text">
+            {sections['explanation'] if sections['explanation'] else "Based on the information provided, here is your eligibility assessment."}
+        </div>
     </div>
     """, unsafe_allow_html=True)
+    
+    # Display missing requirements section
+    if sections['missing_requirements']:
+        st.markdown("""
+        <div class="requirements-box">
+            <div class="requirements-title">
+                <i>⚠</i> Missing or Unmet Requirements
+            </div>
+            <ul class="requirements-list">
+        """, unsafe_allow_html=True)
+        
+        for req in sections['missing_requirements']:
+            st.markdown(f"<li>{req}</li>", unsafe_allow_html=True)
+        
+        st.markdown("</ul></div>", unsafe_allow_html=True)
+    
+    # Display additional information needed
+    if sections['additional_info']:
+        st.markdown("""
+        <div class="requirements-box">
+            <div class="requirements-title">
+                <i>ℹ</i> Additional Information Required
+            </div>
+            <ul class="requirements-list">
+        """, unsafe_allow_html=True)
+        
+        for info in sections['additional_info']:
+            st.markdown(f"<li>{info}</li>", unsafe_allow_html=True)
+        
+        st.markdown("</ul></div>", unsafe_allow_html=True)
+    
+    # Add a note about official verification
+    st.markdown("""
+    <div class="info-note">
+        <strong>Important:</strong> This is a preliminary assessment based on the information provided. 
+        For official visa decisions, always consult the UK government's official immigration guidance 
+        or seek advice from a qualified immigration advisor.
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Optional: Show raw response for debugging
+    with st.expander("View detailed assessment"):
+        st.markdown("**Raw LLM Response:**")
+        st.code(result["evaluation"])
