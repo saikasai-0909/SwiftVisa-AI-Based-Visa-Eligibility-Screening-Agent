@@ -1,5 +1,5 @@
 RAG System for UK Visa Policy
-
+ Checkout the deployed app : https://swiftvisaeligibilityukunnathics.streamlit.app/
 Overview
 
 This repository contains a Retrieval-Augmented Generation (RAG) system focused on UK visa policy documents and a Streamlit-based eligibility assistant. The implementation combines a FAISS vector store, dense text embeddings provided by SentenceTransformers, and a local large language model served via Ollama (Mistral). The system is intended to provide auditable, deterministic eligibility decisions and to supply citation-backed, human-readable explanations when deterministic rules fail.
