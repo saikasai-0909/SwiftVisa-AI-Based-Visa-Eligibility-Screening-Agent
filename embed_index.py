@@ -1,97 +1,163 @@
-import json
-import os
-import pickle
-import numpy as np
-import faiss
-from sentence_transformers import SentenceTransformer
+chunks = []
 
-# =========================================================
-# STEP 1: LOAD CHUNKS JSON
-# =========================================================
-CHUNKS_JSON = "visa_chunks.json"       # output from chunking step
-INDEX_FILE = "visa_faiss.index"        # FAISS index output
-META_FILE = "visa_metadata.pkl"        # metadata output
+with open(r"C:\Users\SHAIK SAAJITH\OneDrive\Documents\visa_chunks.txt", "r", encoding="utf-8") as f:
+    lines = f.readlines()
 
-with open(CHUNKS_JSON, "r", encoding="utf-8") as f:
-    chunks = json.load(f)
+current_chunk = None
+current_text = []
 
-print("✅ Total chunks loaded:", len(chunks))
+for line in lines:
+    line = line.strip()
 
-texts = [c["text"] for c in chunks]
+    # Detect metadata dictionary line
+    if line.startswith("{") and "source" in line:
+        # Save previous chunk
+        if current_chunk:
+            current_chunk["text"] = " ".join(current_text).strip()
+            chunks.append(current_chunk)
 
+        # Start new chunk
+        current_chunk = eval(line)
+        current_text = []
+
+    else:
+        # Collect text lines
+        if line:
+            current_text.append(line)
+
+# Save last chunk
+if current_chunk:
+    current_chunk["text"] = " ".join(current_text).strip()
+    chunks.append(current_chunk)
+
+print("Total chunks loaded:", len(chunks))
+
+
+# ----------------------------
+# STEP 2: EXTRACT TEXT + METADATA
+# ----------------------------
+
+texts = []
 metadatas = []
+
 for c in chunks:
+    texts.append(c["text"])
     metadatas.append({
-        "source": c.get("source"),
-        "page_number": c.get("page_number"),
-        "chunk_id": c.get("chunk_id"),
-        "uuid": c.get("uuid"),
+        "source": c["source"],
+        "page": c["page_number"],
+        "chunk_id": c["chunk_id"],
+        "uuid": c["uuid"]
     })
 
-print("✅ Example text chunk preview:\n", texts[0][:200])
+print("Sample chunk text:\n", texts[0][:200])
 
 
-# =========================================================
-# STEP 2: LOAD EMBEDDING MODEL (FREE)
-# =========================================================
-# This is a light + good embedding model
-model_name = "all-MiniLM-L6-v2"
+# ----------------------------
+# STEP 3: FREE LOCAL EMBEDDINGS
+# ----------------------------
 
-print(f"\n⏳ Loading embedding model: {model_name}")
-embed_model = SentenceTransformer(model_name)
+from sentence_transformers import SentenceTransformer
 
+model = SentenceTransformer("all-MiniLM-L6-v2")
 
-# =========================================================
-# STEP 3: CREATE EMBEDDINGS
-# =========================================================
-print("\n⏳ Creating embeddings...")
-embeddings = embed_model.encode(
-    texts,
-    show_progress_bar=True,
-    convert_to_numpy=True
-)
+embeddings = model.encode(texts)
 
-print("✅ Embeddings created.")
-print("✅ Embedding shape:", embeddings.shape)  # (num_chunks, vector_dim)
+print("Embedding vector size:", embeddings.shape[1])
 
 
-# =========================================================
-# STEP 4: CREATE FAISS INDEX
-# =========================================================
+# ----------------------------
+# STEP 4: INDEXING (FAISS)
+# ----------------------------
+
+import faiss
+import numpy as np
+
 dimension = embeddings.shape[1]
 
-print("\n⏳ Creating FAISS index...")
 index = faiss.IndexFlatL2(dimension)
-index.add(embeddings.astype("float32"))
+index.add(np.array(embeddings).astype("float32"))
 
-print("✅ FAISS vectors indexed:", index.ntotal)
-
-
-# =========================================================
-# STEP 5: SAVE INDEX + METADATA
-# =========================================================
-faiss.write_index(index, INDEX_FILE)
-
-with open(META_FILE, "wb") as f:
-    pickle.dump(metadatas, f)
-
-print("\n✅ Saved FAISS index:", INDEX_FILE)
-print("✅ Saved metadata:", META_FILE)
+print("Total vectors indexed:", index.ntotal)
 
 
-# =========================================================
-# STEP 6: TEST RETRIEVAL (SAMPLE QUERY)
-# =========================================================
-query = "What are requirements for student visa financial proof?"
-query_vec = embed_model.encode([query], convert_to_numpy=True)
+# ----------------------------
+# STEP 5: QUERY
+# ----------------------------
 
-k = 5
-distances, indices = index.search(query_vec.astype("float32"), k)
+query = "Who can apply for a Graduate visa?"
+query_embedding = model.encode([query])
 
-print("\n🔎 Query:", query)
-print("\n✅ Top Retrieved Chunks:\n")
+# ----------------------------
+# STEP 6: RETRIEVER
+# ----------------------------
 
-for rank, idx in enumerate(indices[0], start=1):
-    print(f"--- Rank {rank} | Chunk ID: {metadatas[idx]['chunk_id']} | Page: {metadatas[idx]['page_number']} ---")
-    print(texts[idx][:500])
-    print()
+k = 3
+distances, indices = index.search(
+    np.array(query_embedding).astype("float32"),
+    k
+)
+
+
+# ----------------------------
+# STEP 7: OUTPUT
+# ----------------------------
+
+print("\n Retrieved Chunks:\n")
+
+for idx in indices[0]:
+    print(texts[idx])
+    print("Source:", metadatas[idx])
+    print("-" * 80)
+
+
+# ----------------------------
+# STEP 8: BUILD CONTEXT
+# ----------------------------
+
+context = " ".join([texts[i] for i in indices[0]])
+
+print("\n Retrieved Context:\n")
+print(context[:500])  # preview
+
+
+# ----------------------------
+# STEP 9: LOAD LOCAL LLM
+# ----------------------------
+
+from transformers import pipeline
+
+generator = pipeline(
+    "text-generation",
+    model="distilgpt2"
+)
+
+
+# ----------------------------
+# STEP 10: PROMPT LLM
+# ----------------------------
+
+prompt = f"""
+Answer the question using ONLY the context below.
+
+Context:
+{context}
+
+Question:
+{query}
+
+Answer:
+"""
+
+
+# ----------------------------
+# STEP 11: GENERATE ANSWER
+# ----------------------------
+
+response = generator(
+    prompt,
+    max_length=300,
+    num_return_sequences=1
+)
+
+print("\n FINAL ANSWER:\n")
+print(response[0]["generated_text"])
