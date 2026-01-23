@@ -1,0 +1,32 @@
+def graduate_visa_rules() -> Tuple[List[str], List[Rule]]:
+    required = [
+        "currently_in_uk",
+        "current_uk_visa_type",
+        "course_completed",
+        "education_provider_is_licensed",
+        "provider_reported_completion_to_home_office",
+        "student_visa_valid_on_application_date",
+    ]
+
+    rules = [
+        Rule("GV-1", "Applicant must currently be in the UK.",
+             lambda u: norm_bool(safe_get(u, "currently_in_uk")) is True),
+
+        Rule("GV-2", "Current UK visa type must be Student or Tier 4.",
+             lambda u: str(safe_get(u, "current_uk_visa_type")).strip().lower()
+                       in ["student", "tier 4", "tier4"]),
+
+        Rule("GV-3", "Course must be completed.",
+             lambda u: norm_bool(safe_get(u, "course_completed")) is True),
+
+        Rule("GV-4", "Education provider must be licensed.",
+             lambda u: norm_bool(safe_get(u, "education_provider_is_licensed")) is True),
+
+        Rule("GV-5", "Provider must have reported completion to Home Office.",
+             lambda u: norm_bool(safe_get(u, "provider_reported_completion_to_home_office")) is True),
+
+        Rule("GV-6", "Student visa must be valid on application date.",
+             lambda u: norm_bool(safe_get(u, "student_visa_valid_on_application_date")) is True),
+    ]
+
+    return required, rules
