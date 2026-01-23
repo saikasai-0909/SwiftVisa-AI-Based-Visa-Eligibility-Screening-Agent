@@ -1,0 +1,611 @@
+================================================================================
+                    UK VISA ELIGIBILITY CHECKER
+                      EXECUTION INSTRUCTIONS
+================================================================================
+
+PROJECT: AI-Powered UK Visa Eligibility Screening System
+VERSION: 1.0
+DATE: January 16, 2026
+PURPOSE: Step-by-step guide to run the application
+
+================================================================================
+                    📋 PRE-REQUISITES CHECKLIST
+================================================================================
+
+Before running the project, ensure you have:
+
+□ Python 3.12+ installed
+□ Virtual environment activated (optional but recommended)
+□ LM Studio installed and running
+□ All required Python packages installed
+□ Project files in correct location
+
+================================================================================
+                    🚀 QUICK START (3 STEPS)
+================================================================================
+
+STEP 1: Start LM Studio
+------------------------
+1. Open LM Studio application
+2. Load model: meta-llama-3.2-3b-instruct
+3. Click "Start Server"
+4. Verify running on: http://localhost:1234
+5. Keep LM Studio running in background
+
+STEP 2: Open Terminal/PowerShell
+---------------------------------
+1. Press Windows + R
+2. Type: powershell
+3. Press Enter
+
+STEP 3: Run Streamlit Application
+----------------------------------
+Copy and paste this command:
+
+& "C:/Users/laksh/OneDrive/Desktop/pythonALML/venv/python.exe" -m streamlit run "C:\Users\laksh\OneDrive\Desktop\pythonALML\infosys\visa_form_app.py"
+
+Then open browser: http://localhost:8501
+
+================================================================================
+                    📖 DETAILED INSTRUCTIONS
+================================================================================
+
+METHOD 1: RUN STREAMLIT WEB APPLICATION (RECOMMENDED)
+======================================================
+
+This is the main user interface with forms and AI analysis.
+
+STEP 1: Activate Virtual Environment (if using venv)
+-----------------------------------------------------
+Windows PowerShell:
+cd C:\Users\laksh\OneDrive\Desktop\pythonALML
+.\venv\Scripts\Activate.ps1
+
+Windows CMD:
+cd C:\Users\laksh\OneDrive\Desktop\pythonALML
+venv\Scripts\activate.bat
+
+Linux/Mac:
+cd /path/to/pythonALML
+source venv/bin/activate
+
+STEP 2: Navigate to Project Directory
+--------------------------------------
+cd C:\Users\laksh\OneDrive\Desktop\pythonALML\infosys
+
+STEP 3: Verify Files Exist
+---------------------------
+dir visa_form_app.py
+dir retriever.py
+dir visa_faiss.index
+dir visa_faiss_metadata.pkl
+
+All files should be listed. If any missing, check FILE_USAGE_CLASSIFICATION.txt
+
+STEP 4: Start LM Studio
+------------------------
+IMPORTANT: This must be running BEFORE starting the application!
+
+1. Open LM Studio
+2. Go to "Local Server" tab
+3. Select model: meta-llama-3.2-3b-instruct
+   (Download if not already downloaded)
+4. Click "Start Server"
+5. Confirm URL: http://localhost:1234
+
+Test LM Studio:
+Open browser → http://localhost:1234/v1/models
+Should show: {"object":"list","data":[...]}
+
+STEP 5: Install Required Packages (First Time Only)
+----------------------------------------------------
+If packages not installed, run:
+
+pip install streamlit sentence-transformers faiss-cpu numpy openai
+
+Or if you have requirements.txt:
+
+pip install -r requirements.txt
+
+STEP 6: Run Streamlit Application
+----------------------------------
+Command 1 (With virtual environment):
+python -m streamlit run visa_form_app.py
+
+Command 2 (Full path):
+& "C:/Users/laksh/OneDrive/Desktop/pythonALML/venv/python.exe" -m streamlit run "C:\Users\laksh\OneDrive\Desktop\pythonALML\infosys\visa_form_app.py"
+
+Command 3 (Specific port):
+python -m streamlit run visa_form_app.py --server.port 8503
+
+STEP 7: Access Application
+---------------------------
+Streamlit will display:
+
+  You can now view your Streamlit app in your browser.
+
+  Local URL: http://localhost:8501
+  Network URL: http://192.168.x.x:8501
+
+Open browser and go to: http://localhost:8501
+
+STEP 8: Use Application
+------------------------
+1. Select visa type from dropdown
+2. Fill in personal information
+3. Fill in visa-specific details
+4. Click "🔍 Check Eligibility"
+5. View results (ELIGIBLE/NOT ELIGIBLE)
+
+STEP 9: Stop Application
+-------------------------
+In terminal, press: Ctrl + C
+
+To stop LM Studio:
+Click "Stop Server" in LM Studio
+
+================================================================================
+
+METHOD 2: RUN COMMAND-LINE RAG INTERFACE
+=========================================
+
+This is for testing or quick queries without the web interface.
+
+STEP 1: Start LM Studio (Same as Method 1, Step 4)
+---------------------------------------------------
+
+STEP 2: Navigate to Directory
+------------------------------
+cd C:\Users\laksh\OneDrive\Desktop\pythonALML\infosys
+
+STEP 3: Run RAG Script
+-----------------------
+python rag.py
+
+Or with full path:
+& "C:/Users/laksh/OneDrive/Desktop/pythonALML/venv/python.exe" rag.py
+
+STEP 4: Interact with System
+-----------------------------
+You'll see:
+================================================================================
+🇬🇧 AI VISA ELIGIBILITY SCREENING (RAG)
+================================================================================
+
+💡 Tips:
+   • Ask questions about UK visa requirements, costs, eligibility
+   • Type 'exit' or 'quit' to stop
+   • Type 'help' for example questions
+================================================================================
+
+❓ Your question (or 'exit'): 
+
+Type your question and press Enter.
+
+Example questions:
+- What are the requirements for a student visa?
+- How much does a graduate visa cost?
+- Can I work on a visitor visa?
+
+STEP 5: Exit
+------------
+Type: exit
+Or press: Ctrl + C
+
+================================================================================
+                    🧪 TESTING THE SYSTEM
+================================================================================
+
+TEST 1: Verify Retriever Works
+-------------------------------
+python test_rag.py
+
+Expected output:
+✅ Retriever loaded successfully!
+✅ Retrieved 3 documents
+✅ RAG System is working correctly!
+
+TEST 2: Verify Full Pipeline
+-----------------------------
+python test_full_rag.py
+
+Expected output:
+✅ Retrieved 2 documents
+✅ LLM Response: Hello, I am working!
+✅ Full RAG Pipeline is working!
+✅ All tests passed!
+
+================================================================================
+                    🔧 TROUBLESHOOTING
+================================================================================
+
+PROBLEM 1: "streamlit: command not found"
+------------------------------------------
+SOLUTION:
+pip install streamlit
+Or use full path:
+python -m streamlit run visa_form_app.py
+
+PROBLEM 2: "Module 'sentence_transformers' not found"
+------------------------------------------------------
+SOLUTION:
+pip install sentence-transformers
+
+PROBLEM 3: "Cannot connect to LM Studio"
+-----------------------------------------
+ERROR MESSAGE:
+⚠️ Error: Connection refused
+⚠️ Please ensure LM Studio is running on http://localhost:1234
+
+SOLUTION:
+1. Open LM Studio
+2. Load model: meta-llama-3.2-3b-instruct
+3. Click "Start Server"
+4. Verify it says "Server running on port 1234"
+5. Restart application
+
+PROBLEM 4: "File does not exist: visa_faiss.index"
+---------------------------------------------------
+SOLUTION:
+Check file location:
+dir visa_faiss.index
+
+If missing, you need to rebuild:
+python create_embeddings.py
+python store_in_vector_db.py
+
+PROBLEM 5: "Port already in use"
+---------------------------------
+ERROR MESSAGE:
+Address already in use
+
+SOLUTION:
+Use different port:
+python -m streamlit run visa_form_app.py --server.port 8502
+
+Or kill existing process:
+netstat -ano | findstr :8501
+taskkill /PID [PID_NUMBER] /F
+
+PROBLEM 6: Application loads but shows errors
+----------------------------------------------
+SOLUTION:
+1. Check LM Studio is running
+2. Verify model is loaded
+3. Check console for error messages
+4. Ensure all files exist (4 critical files)
+5. Restart application
+
+PROBLEM 7: Slow response or timeout
+------------------------------------
+SOLUTION:
+1. LLM might be loading (wait 30 seconds)
+2. First query is always slower
+3. Check LM Studio hasn't crashed
+4. Reduce query complexity
+5. Restart LM Studio
+
+================================================================================
+                    💻 SYSTEM COMMANDS REFERENCE
+================================================================================
+
+WINDOWS POWERSHELL COMMANDS:
+----------------------------
+# Navigate to project
+cd C:\Users\laksh\OneDrive\Desktop\pythonALML\infosys
+
+# Activate virtual environment
+.\venv\Scripts\Activate.ps1
+
+# Run Streamlit (short)
+python -m streamlit run visa_form_app.py
+
+# Run Streamlit (full path)
+& "C:/Users/laksh/OneDrive/Desktop/pythonALML/venv/python.exe" -m streamlit run "C:\Users\laksh\OneDrive\Desktop\pythonALML\infosys\visa_form_app.py"
+
+# Run with specific port
+python -m streamlit run visa_form_app.py --server.port 8503
+
+# Run RAG CLI
+python rag.py
+
+# Run tests
+python test_rag.py
+python test_full_rag.py
+
+# Check running processes
+Get-Process | Where-Object {$_.ProcessName -like "*streamlit*"}
+
+# Stop process
+taskkill /F /IM python.exe
+
+# List files
+dir
+
+# Check Python version
+python --version
+
+# List installed packages
+pip list
+
+# Install package
+pip install [package-name]
+
+LINUX/MAC COMMANDS:
+-------------------
+# Navigate to project
+cd /path/to/pythonALML/infosys
+
+# Activate virtual environment
+source venv/bin/activate
+
+# Run Streamlit
+python -m streamlit run visa_form_app.py
+
+# Run RAG CLI
+python rag.py
+
+# Check running processes
+ps aux | grep streamlit
+
+# Kill process
+kill [PID]
+
+# List files
+ls -la
+
+================================================================================
+                    📱 ACCESSING FROM OTHER DEVICES
+================================================================================
+
+To access from phone, tablet, or another computer on same network:
+
+STEP 1: Find Your IP Address
+-----------------------------
+Windows:
+ipconfig
+Look for "IPv4 Address": e.g., 192.168.0.102
+
+Linux/Mac:
+ifconfig
+Look for "inet": e.g., 192.168.0.102
+
+STEP 2: Start Application
+--------------------------
+python -m streamlit run visa_form_app.py
+
+STEP 3: Note Network URL
+-------------------------
+Streamlit shows:
+Network URL: http://192.168.0.102:8501
+
+STEP 4: Access from Other Device
+---------------------------------
+On same WiFi network, open browser:
+http://192.168.0.102:8501
+
+Replace IP with your actual IP address.
+
+================================================================================
+                    🔄 RESTART INSTRUCTIONS
+================================================================================
+
+TO RESTART AFTER CLOSING:
+--------------------------
+1. Ensure LM Studio is running (http://localhost:1234)
+2. Open PowerShell
+3. Run command:
+   & "C:/Users/laksh/OneDrive/Desktop/pythonALML/venv/python.exe" -m streamlit run "C:\Users\laksh\OneDrive\Desktop\pythonALML\infosys\visa_form_app.py"
+4. Open browser: http://localhost:8501
+
+TO RESTART AFTER SYSTEM REBOOT:
+--------------------------------
+1. Start LM Studio
+2. Load model and start server
+3. Open PowerShell
+4. Navigate to project directory
+5. Run Streamlit command
+6. Access in browser
+
+================================================================================
+                    📝 DAILY USAGE WORKFLOW
+================================================================================
+
+MORNING STARTUP:
+----------------
+1. Turn on computer
+2. Open LM Studio → Load model → Start server
+3. Open PowerShell → Run streamlit command
+4. Open browser → http://localhost:8501
+5. Ready to use!
+
+DURING THE DAY:
+---------------
+- Keep browser tab open
+- Leave Streamlit running
+- LM Studio can run in background
+- Process multiple visa applications
+
+END OF DAY SHUTDOWN:
+--------------------
+1. Close browser tab (optional)
+2. In PowerShell: Press Ctrl + C
+3. Stop LM Studio server
+4. Close applications
+
+================================================================================
+                    ⚡ PERFORMANCE TIPS
+================================================================================
+
+FOR FASTER RESPONSES:
+---------------------
+1. Keep LM Studio running (don't restart repeatedly)
+2. First query is always slower (model loading)
+3. Subsequent queries are faster
+4. Close unnecessary applications
+5. Use Chrome/Edge for better performance
+
+FOR LOWER MEMORY USAGE:
+-----------------------
+1. Close other applications
+2. Use smaller LLM model if available
+3. Restart LM Studio periodically
+4. Clear browser cache
+
+FOR BETTER ACCURACY:
+--------------------
+1. Fill all form fields completely
+2. Use specific questions
+3. Provide accurate financial information
+4. Select correct visa type
+
+================================================================================
+                    📊 MONITORING & LOGS
+================================================================================
+
+VIEW STREAMLIT LOGS:
+--------------------
+Logs appear in terminal where you ran streamlit
+Look for:
+- "Loading FAISS index..." (should be fast)
+- "✓ Loaded 307 documents"
+- "✓ Model loaded successfully"
+
+VIEW LM STUDIO LOGS:
+--------------------
+In LM Studio window, check:
+- Request received
+- Response time
+- Token count
+- Any errors
+
+COMMON LOG MESSAGES:
+--------------------
+✓ Good:
+  "Loaded index with 307 vectors"
+  "Model loaded successfully"
+  "✅ Analysis Complete"
+
+⚠️  Warning:
+  "tensorflow warnings" (can be ignored)
+  "oneDNN custom operations" (can be ignored)
+
+❌ Error:
+  "Connection refused"
+  "Module not found"
+  "File not found"
+
+================================================================================
+                    🎓 EXAMPLE USAGE SESSION
+================================================================================
+
+COMPLETE EXAMPLE FROM START TO FINISH:
+---------------------------------------
+
+1. OPEN LM STUDIO
+   → Load meta-llama-3.2-3b-instruct
+   → Click "Start Server"
+   → See: "Server running on port 1234" ✓
+
+2. OPEN POWERSHELL
+   → Right-click Start menu
+   → Click "Windows PowerShell"
+
+3. RUN COMMAND
+   → Paste: & "C:/Users/laksh/OneDrive/Desktop/pythonALML/venv/python.exe" -m streamlit run "C:\Users\laksh\OneDrive\Desktop\pythonALML\infosys\visa_form_app.py"
+   → Press Enter
+   → Wait 10-15 seconds
+
+4. SEE OUTPUT
+   Terminal shows:
+   ✓ Loaded index with 307 vectors
+   ✓ Loaded 307 documents
+   ✓ Model loaded successfully
+   
+   You can now view your Streamlit app in your browser.
+   Local URL: http://localhost:8501
+
+5. OPEN BROWSER
+   → Open Chrome/Edge
+   → Go to: http://localhost:8501
+   → Application loads ✓
+
+6. USE APPLICATION
+   → Select: "Student Visa"
+   → Fill Name: "John Smith"
+   → Fill DOB: "01/15/2000"
+   → Fill all fields...
+   → Click: "🔍 Check Eligibility"
+   → Wait 5-10 seconds
+   → See result: "✅ ELIGIBILITY STATUS: ELIGIBLE"
+
+7. DONE!
+   Application ready for more queries
+
+================================================================================
+                    📞 QUICK REFERENCE CARD
+================================================================================
+
+┌──────────────────────────────────────────────────────────────────┐
+│                    QUICK START COMMANDS                           │
+├──────────────────────────────────────────────────────────────────┤
+│ START LM STUDIO:                                                 │
+│   Open LM Studio → Start Server                                  │
+│                                                                  │
+│ RUN APPLICATION (Short):                                         │
+│   python -m streamlit run visa_form_app.py                      │
+│                                                                  │
+│ RUN APPLICATION (Full):                                          │
+│   & "C:/Users/laksh/OneDrive/Desktop/pythonALML/venv/python.exe"│
+│   -m streamlit run                                               │
+│   "C:\Users\laksh\OneDrive\Desktop\pythonALML\infosys\          │
+│   visa_form_app.py"                                             │
+│                                                                  │
+│ ACCESS:                                                          │
+│   http://localhost:8501                                          │
+│                                                                  │
+│ STOP:                                                            │
+│   Press Ctrl + C in terminal                                     │
+└──────────────────────────────────────────────────────────────────┘
+
+================================================================================
+                    ✅ FINAL CHECKLIST
+================================================================================
+
+BEFORE RUNNING, VERIFY:
+-----------------------
+□ Python 3.12+ installed
+□ Virtual environment activated (optional)
+□ LM Studio installed
+□ LM Studio server running on port 1234
+□ Model loaded: meta-llama-3.2-3b-instruct
+□ Files exist: visa_form_app.py, retriever.py, visa_faiss.index, visa_faiss_metadata.pkl
+□ Packages installed: streamlit, sentence-transformers, faiss-cpu, numpy, openai
+□ Port 8501 available (or use different port)
+
+IF ALL CHECKED:
+---------------
+✅ Ready to run the application!
+
+RUN THIS COMMAND:
+-----------------
+& "C:/Users/laksh/OneDrive/Desktop/pythonALML/venv/python.exe" -m streamlit run "C:\Users\laksh\OneDrive\Desktop\pythonALML\infosys\visa_form_app.py"
+
+THEN OPEN:
+----------
+http://localhost:8501
+
+================================================================================
+                    END OF EXECUTION INSTRUCTIONS
+================================================================================
+
+Last Updated: January 16, 2026
+Version: 1.0
+
+For more information, see:
+- PROJECT_DOCUMENTATION.txt (Complete system documentation)
+- FILE_USAGE_CLASSIFICATION.txt (File importance guide)
+
+If you encounter issues, check the TROUBLESHOOTING section above.
+
+================================================================================
