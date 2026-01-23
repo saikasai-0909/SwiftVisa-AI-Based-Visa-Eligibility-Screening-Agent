@@ -1,0 +1,31 @@
+def visitor_visa_rules() -> Tuple[List[str], List[Rule]]:
+    required = [
+        "purpose_is_permitted_under_visitor_rules",
+        "stay_within_6_months_limit",
+        "accommodation_arranged",
+        "return_or_onward_travel_planned",
+        "intends_to_leave_uk_after_visit",
+        "sufficient_funds_for_stay",
+    ]
+
+    rules = [
+        Rule("VV-1", "Purpose must be permitted under visitor rules.",
+             lambda u: norm_bool(safe_get(u, "purpose_is_permitted_under_visitor_rules")) is True),
+
+        Rule("VV-2", "Stay must be within 6 months limit.",
+             lambda u: norm_bool(safe_get(u, "stay_within_6_months_limit")) is True),
+
+        Rule("VV-3", "Accommodation must be arranged.",
+             lambda u: norm_bool(safe_get(u, "accommodation_arranged")) is True),
+
+        Rule("VV-4", "Return/onward travel must be planned.",
+             lambda u: norm_bool(safe_get(u, "return_or_onward_travel_planned")) is True),
+
+        Rule("VV-5", "Applicant must intend to leave UK after visit.",
+             lambda u: norm_bool(safe_get(u, "intends_to_leave_uk_after_visit")) is True),
+
+        Rule("VV-6", "Applicant must have sufficient funds for stay.",
+             lambda u: norm_bool(safe_get(u, "sufficient_funds_for_stay")) is True),
+    ]
+
+    return required, rules
