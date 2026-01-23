@@ -1,0 +1,38 @@
+def skilled_worker_visa_rules() -> Tuple[List[str], List[Rule]]:
+    required = [
+        "job_offer_confirmed",
+        "employer_is_licensed_sponsor",
+        "certificate_of_sponsorship_issued",
+        "job_is_eligible_occupation",
+        "meets_minimum_salary_threshold",
+        "english_requirement_met",
+        "criminal_record_certificate_required",
+    ]
+
+    rules = [
+        Rule("SWV-1", "Job offer must be confirmed.",
+             lambda u: norm_bool(safe_get(u, "job_offer_confirmed")) is True),
+
+        Rule("SWV-2", "Employer must be licensed sponsor.",
+             lambda u: norm_bool(safe_get(u, "employer_is_licensed_sponsor")) is True),
+
+        Rule("SWV-3", "Certificate of Sponsorship (CoS) must be issued.",
+             lambda u: norm_bool(safe_get(u, "certificate_of_sponsorship_issued")) is True),
+
+        Rule("SWV-4", "Job must be eligible occupation.",
+             lambda u: norm_bool(safe_get(u, "job_is_eligible_occupation")) is True),
+
+        Rule("SWV-5", "Salary must meet minimum threshold.",
+             lambda u: norm_bool(safe_get(u, "meets_minimum_salary_threshold")) is True),
+
+        Rule("SWV-6", "English requirement must be met.",
+             lambda u: norm_bool(safe_get(u, "english_requirement_met")) is True),
+
+        Rule("SWV-7", "If criminal record certificate is required, it must be provided.",
+             lambda u: (
+                 norm_bool(safe_get(u, "criminal_record_certificate_required")) is False
+                 or norm_bool(safe_get(u, "criminal_record_certificate_provided")) is True
+             )),
+    ]
+
+    return required, rules
