@@ -1,0 +1,38 @@
+def health_care_visa_rules() -> Tuple[List[str], List[Rule]]:
+    required = [
+        "job_offer_confirmed",
+        "employer_is_licensed_healthcare_sponsor",
+        "certificate_of_sponsorship_issued",
+        "job_is_eligible_healthcare_role",
+        "meets_healthcare_salary_rules",
+        "professional_registration_required",
+        "english_requirement_met",
+    ]
+
+    rules = [
+        Rule("HCV-1", "Job offer must be confirmed.",
+             lambda u: norm_bool(safe_get(u, "job_offer_confirmed")) is True),
+
+        Rule("HCV-2", "Employer must be licensed healthcare sponsor.",
+             lambda u: norm_bool(safe_get(u, "employer_is_licensed_healthcare_sponsor")) is True),
+
+        Rule("HCV-3", "Certificate of Sponsorship (CoS) must be issued.",
+             lambda u: norm_bool(safe_get(u, "certificate_of_sponsorship_issued")) is True),
+
+        Rule("HCV-4", "Job must be eligible healthcare role.",
+             lambda u: norm_bool(safe_get(u, "job_is_eligible_healthcare_role")) is True),
+
+        Rule("HCV-5", "Salary must satisfy healthcare salary rules.",
+             lambda u: norm_bool(safe_get(u, "meets_healthcare_salary_rules")) is True),
+
+        Rule("HCV-6", "English requirement must be met.",
+             lambda u: norm_bool(safe_get(u, "english_requirement_met")) is True),
+
+        Rule("HCV-7", "If professional registration is required, it must be provided.",
+             lambda u: (
+                 norm_bool(safe_get(u, "professional_registration_required")) is False
+                 or norm_bool(safe_get(u, "professional_registration_provided")) is True
+             )),
+    ]
+
+    return required, rules
