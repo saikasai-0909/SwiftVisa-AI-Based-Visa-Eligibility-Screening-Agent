@@ -1,0 +1,31 @@
+def student_visa_rules() -> Tuple[List[str], List[Rule]]:
+    required = [
+        "has_cas",
+        "education_provider_is_licensed",
+        "course_full_time",
+        "meets_financial_requirement",
+        "funds_held_for_28_days",
+        "english_requirement_met",
+    ]
+
+    rules = [
+        Rule("SV-1", "CAS must be available (has_cas = Yes).",
+             lambda u: norm_bool(safe_get(u, "has_cas")) is True),
+
+        Rule("SV-2", "Education provider must be licensed.",
+             lambda u: norm_bool(safe_get(u, "education_provider_is_licensed")) is True),
+
+        Rule("SV-3", "Course must be full-time.",
+             lambda u: norm_bool(safe_get(u, "course_full_time")) is True),
+
+        Rule("SV-4", "Financial requirement must be met.",
+             lambda u: norm_bool(safe_get(u, "meets_financial_requirement")) is True),
+
+        Rule("SV-5", "Funds must be held for 28 days.",
+             lambda u: norm_bool(safe_get(u, "funds_held_for_28_days")) is True),
+
+        Rule("SV-6", "English requirement must be met.",
+             lambda u: norm_bool(safe_get(u, "english_requirement_met")) is True),
+    ]
+
+    return required, rules
