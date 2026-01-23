@@ -1,0 +1,173 @@
+{'source': 'C:\\Users\\SHAIK SAAJITH\\Downloads\\stu_visa.pdf', 'page_number': 1, 'chunk_id': 'page1_chunk1', 'start_index': 0, 'end_index': 200, 'uuid': '9afb9612-3b3b-48b7-9249-9989f910fb5d'} 
+ Student visa
+1. Overview
+You can apply for a Student visa to study in the UK if you’re 16 or over and
+you:
+have been offered a place on a course by a licensed student sponsor
+(/student-visa/course)
+ha
+
+{'source': 'C:\\Users\\SHAIK SAAJITH\\Downloads\\stu_visa.pdf', 'page_number': 1, 'chunk_id': 'page1_chunk2', 'start_index': 170, 'end_index': 370, 'uuid': 'c04f6c4a-f535-420f-b03d-924b48801f06'}       
+ nsor
+(/student-visa/course)
+have enough money to support yourself and pay for your course (/student-
+visa/money) - the amount will vary depending on your circumstances
+can speak, read, write and under
+
+{'source': 'C:\\Users\\SHAIK SAAJITH\\Downloads\\stu_visa.pdf', 'page_number': 1, 'chunk_id': 'page1_chunk3', 'start_index': 340, 'end_index': 540, 'uuid': 'bf75991b-20fa-4033-a908-65f84ff23f64'}       
+ n speak, read, write and understand English (/student-visa/knowledge-of-
+english)
+have consent from your parents if you’re 16 or 17 - you’ll need evidence
+of this when you apply
+If you’re 16 or 17 and
+
+{'source': 'C:\\Users\\SHAIK SAAJITH\\Downloads\\stu_visa.pdf', 'page_number': 1, 'chunk_id': 'page1_chunk4', 'start_index': 510, 'end_index': 710, 'uuid': '41775667-22e7-4fe3-be3a-b9772fa3cd5e'}       
+ u apply
+If you’re 16 or 17 and you want to study at an independent school in the
+UK, you may be eligible for a Child Student visa (/child-study-visa)
+instead.
+This visa has replaced the Tier 4 (Genera
+
+{'source': 'C:\\Users\\SHAIK SAAJITH\\Downloads\\stu_visa.pdf', 'page_number': 1, 'chunk_id': 'page1_chunk5', 'start_index': 680, 'end_index': 880, 'uuid': '80a9b225-efeb-496c-8b5b-d6c535e5fe2a'}       
+ as replaced the Tier 4 (General) student visa.
+When to apply
+When you can apply depends on whether you’re applying from inside or
+outside the UK.
+Applying from outside the UK
+The earliest you can appl
+{'source': 'C:\\Users\\SHAIK SAAJITH\\Downloads\\grad_visa.pdf', 'page_number': 1, 'chunk_id': 'page1_chunk1', 'start_index': 0, 'end_index': 200, 'uuid': '29a57370-ee18-4d34-ac6e-a99d511a3235'}        
+ Graduate visa
+1. Overview
+A Graduate visa gives you permission to stay in the UK for at least 18
+months after successfully completing an eligible course in the UK.
+You must be in the UK when you apply
+
+{'source': 'C:\\Users\\SHAIK SAAJITH\\Downloads\\grad_visa.pdf', 'page_number': 1, 'chunk_id': 'page1_chunk2', 'start_index': 170, 'end_index': 370, 'uuid': '3c222f8a-8ac9-48e9-93c1-22e9a2fc8f0b'}      
+ st be in the UK when you apply.
+Eligibility
+You can apply for a Graduate visa if all of the following are true:
+you’re in the UK
+your current visa is a Student visa or Tier 4 (General) student visa
+(/
+
+{'source': 'C:\\Users\\SHAIK SAAJITH\\Downloads\\grad_visa.pdf', 'page_number': 1, 'chunk_id': 'page1_chunk3', 'start_index': 340, 'end_index': 540, 'uuid': '93eb936d-845a-4c42-a87c-ffd527fd3e29'}      
+ er 4 (General) student visa
+(/student-visa)
+you studied a UK bachelor’s degree, postgraduate degree or other
+eligible course for a minimum period of time with your Student visa or Tier
+4 (General) stu
+
+{'source': 'C:\\Users\\SHAIK SAAJITH\\Downloads\\grad_visa.pdf', 'page_number': 1, 'chunk_id': 'page1_chunk4', 'start_index': 510, 'end_index': 710, 'uuid': '5835fc20-e7f4-4e82-a09a-a1136f1ec3fc'}      
+ t visa or Tier
+4 (General) student visa
+your education provider (such as your university or college) has told the
+Home Office you’ve successfully completed your course
+You can ask your education provi
+
+{'source': 'C:\\Users\\SHAIK SAAJITH\\Downloads\\grad_visa.pdf', 'page_number': 1, 'chunk_id': 'page1_chunk5', 'start_index': 680, 'end_index': 880, 'uuid': 'ef4579c2-dd6a-4447-8a4e-452eecb21efe'}      
+ u can ask your education provider if you’re not sure whether they’ve told
+the Home Office you’ve successfully completed your course.
+Check if your course is eligible and how long you need to have stud
+{'source': 'C:\\Users\\SHAIK SAAJITH\\Downloads\\healthncare-visa.pdf', 'page_number': 1, 'chunk_id': 'page1_chunk1', 'start_index': 0, 'end_index': 200, 'uuid': '7d857c69-1c09-402f-b1b3-98519be20110'} 
+ Health and Care Worker visa
+1. Overview
+A Health and Care Worker visa allows medical professionals to come to or
+stay in the UK to do an eligible job with the NHS, an NHS supplier or in
+adult social c
+
+{'source': 'C:\\Users\\SHAIK SAAJITH\\Downloads\\healthncare-visa.pdf', 'page_number': 1, 'chunk_id': 'page1_chunk2', 'start_index': 170, 'end_index': 370, 'uuid': '74006158-401d-4b87-8b51-f7dac7aa2bcf'}
+  supplier or in
+adult social care.
+Eligibility
+Your job
+To qualify for a Health and Care Worker visa, you must:
+be a qualified doctor, nurse, health professional or adult social care
+professional
+work
+
+{'source': 'C:\\Users\\SHAIK SAAJITH\\Downloads\\healthncare-visa.pdf', 'page_number': 1, 'chunk_id': 'page1_chunk3', 'start_index': 340, 'end_index': 540, 'uuid': '44497101-45a3-40c1-822b-6a78338e2e58'}
+  social care
+professional
+work in an eligible health or social care job
+work for a UK employer that’s been approved by the Home Office
+have a ‘certificate of sponsorship’ from your employer with infor
+
+{'source': 'C:\\Users\\SHAIK SAAJITH\\Downloads\\healthncare-visa.pdf', 'page_number': 1, 'chunk_id': 'page1_chunk4', 'start_index': 510, 'end_index': 710, 'uuid': '5d29bcfe-e9dc-45ec-bfad-bf45d041cb46'}
+  from your employer with information
+about the role you’ve been offered in the UK
+be paid a minimum salary - how much depends on the type of work you
+do
+Check if your job is eligible (/health-care-wor
+
+{'source': 'C:\\Users\\SHAIK SAAJITH\\Downloads\\healthncare-visa.pdf', 'page_number': 1, 'chunk_id': 'page1_chunk5', 'start_index': 680, 'end_index': 880, 'uuid': '4bb90651-85b7-43ee-ad27-b630d5193062'}
+  is eligible (/health-care-worker-visa/your-job).
+You must have a confirmed job offer before you apply for your visa.
+Knowledge of English
+You must be able to speak, read, write and understand English
+{'source': 'C:\\Users\\SHAIK SAAJITH\\Downloads\\worker_visa.pdf', 'page_number': 1, 'chunk_id': 'page1_chunk1', 'start_index': 0, 'end_index': 200, 'uuid': '63dadd38-55e2-440a-b585-f680cb9e2f6f'}      
+ Skilled Worker visa
+1. Overview
+A Skilled Worker visa allows you to come to or stay in the UK to do an
+eligible job with an approved employer.
+This visa has replaced the Tier 2 (General) work visa.
+It
+
+{'source': 'C:\\Users\\SHAIK SAAJITH\\Downloads\\worker_visa.pdf', 'page_number': 1, 'chunk_id': 'page1_chunk2', 'start_index': 170, 'end_index': 370, 'uuid': 'c0fcd004-2334-40f5-8bee-d95366df0eaa'}    
+ Tier 2 (General) work visa.
+It also allows you to work in UK waters.
+Eligibility
+Your job
+To qualify for a Skilled Worker visa, you must:
+work for a UK employer that’s been approved by the Home Office
+
+{'source': 'C:\\Users\\SHAIK SAAJITH\\Downloads\\worker_visa.pdf', 'page_number': 1, 'chunk_id': 'page1_chunk3', 'start_index': 340, 'end_index': 540, 'uuid': '1dc2d84b-5704-46e9-a5e2-1a31cddb3113'}    
+ en approved by the Home Office
+have a ‘certificate of sponsorship’ (CoS) from your employer with
+information about the role you’ve been offered in the UK
+do a job that’s on the list of eligible occupa
+
+{'source': 'C:\\Users\\SHAIK SAAJITH\\Downloads\\worker_visa.pdf', 'page_number': 1, 'chunk_id': 'page1_chunk4', 'start_index': 510, 'end_index': 710, 'uuid': '989ff932-a936-4d4a-a84b-7454085bf413'}    
+ on the list of eligible occupations
+be paid a minimum salary - how much depends on the type of work you
+do and the date you got your CoS
+The specific eligibility depends on your job (/skilled-worker-v
+
+{'source': 'C:\\Users\\SHAIK SAAJITH\\Downloads\\worker_visa.pdf', 'page_number': 1, 'chunk_id': 'page1_chunk5', 'start_index': 680, 'end_index': 880, 'uuid': '010e61f1-498e-4ec4-ba1f-2391324e4372'}    
+ on your job (/skilled-worker-visa/your-job).
+You must have a confirmed job offer before you apply for your visa.
+Knowledge of English
+You must be able to speak, read, write and understand English. You
+{'source': 'C:\\Users\\SHAIK SAAJITH\\Downloads\\visitor_visa.pdf', 'page_number': 1, 'chunk_id': 'page1_chunk1', 'start_index': 0, 'end_index': 200, 'uuid': '38484ace-5d49-4d40-b7a9-87f3a24eba0c'}     
+ Visit the UK as a Standard
+Visitor
+1. Overview
+You can visit the UK as a Standard Visitor for tourism, business, study
+(courses up to 6 months) and other permitted activities.
+You can usually stay in
+
+{'source': 'C:\\Users\\SHAIK SAAJITH\\Downloads\\visitor_visa.pdf', 'page_number': 1, 'chunk_id': 'page1_chunk2', 'start_index': 170, 'end_index': 370, 'uuid': 'a1139048-070f-406e-a455-f4f182936ac5'}   
+ ties.
+You can usually stay in the UK for up to 6 months. You might be able to
+apply to stay for longer in certain circumstances, for example to get medical
+treatment.
+Depending on your nationality, yo
+
+{'source': 'C:\\Users\\SHAIK SAAJITH\\Downloads\\visitor_visa.pdf', 'page_number': 1, 'chunk_id': 'page1_chunk3', 'start_index': 340, 'end_index': 540, 'uuid': '4d9c3cdf-9c9e-4b35-bfcb-97634c0a9ede'}   
+ ending on your nationality, you may not need a visa to visit the UK.
+You should check if you need a visa before you apply.
+What you need to do
+What you can and cannot do (‘permitted activities’)
+You
+
+{'source': 'C:\\Users\\SHAIK SAAJITH\\Downloads\\visitor_visa.pdf', 'page_number': 1, 'chunk_id': 'page1_chunk4', 'start_index': 510, 'end_index': 710, 'uuid': '786c8e27-e429-4bcf-8fd9-8b91a313f9d6'}   
+  (‘permitted activities’)
+You can visit the UK as a Standard Visitor:
+for tourism, for example on a holiday or vacation
+to see your family or friends
+to volunteer for up to 30 days with a registered c
+
+{'source': 'C:\\Users\\SHAIK SAAJITH\\Downloads\\visitor_visa.pdf', 'page_number': 1, 'chunk_id': 'page1_chunk5', 'start_index': 680, 'end_index': 880, 'uuid': '5e47432b-e07e-460c-91a6-baebbded2f42'}   
+ to 30 days with a registered charityCheck if what you plan to do in the UK is allowed as a Standard 
+Visitor.1
+Check you meet the eligibility requirements. 2
+Check if you need to apply for a visa to vi
