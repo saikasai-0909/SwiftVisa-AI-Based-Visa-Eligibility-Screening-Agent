@@ -453,19 +453,6 @@ if st.session_state.result:
         else:
             st.info("Select at least one visa type to compare.")
 
-        if st.session_state.applicant_data:
-            recommendations = get_best_match(st.session_state.applicant_data)
-            if recommendations:
-                rec_labels = ", ".join(to_label(rec) for rec in recommendations)
-                st.markdown(f"**Recommended visas for your profile:** {rec_labels}")
-                summary_text = create_comparison_summary(st.session_state.applicant_data)
-                st.text_area(
-                    "Recommendation summary",
-                    summary_text,
-                    height=220,
-                    disabled=True,
-                )
-
     with export_tab:
         st.markdown("### Export Assessment")
         if st.session_state.applicant_data:
