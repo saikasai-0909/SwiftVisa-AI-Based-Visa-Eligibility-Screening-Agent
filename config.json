@@ -1,0 +1,6 @@
+{
+  "pdf_folder": "DataSets",
+  "output_folder": "output",
+  "max_words": 200,
+  "overlap_words": 50
+}

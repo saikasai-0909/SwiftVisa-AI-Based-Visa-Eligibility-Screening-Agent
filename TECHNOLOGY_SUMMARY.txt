@@ -1,0 +1,119 @@
+================================================================================
+                    UK VISA ELIGIBILITY CHECKER - TECHNOLOGY SUMMARY
+================================================================================
+
+PROJECT NAME: AI SwiftVisa - UK Visa Eligibility Checker
+--------------------------------------------------------------------------------
+
+TECHNOLOGIES USED:
+================================================================================
+
+1. PROGRAMMING LANGUAGE
+   ---------------------
+   - Python 3.12.0
+
+2. WEB FRAMEWORK (UI)
+   -------------------
+   - Streamlit - For creating interactive web forms and user interface
+
+3. MACHINE LEARNING / AI
+   ----------------------
+   - Sentence Transformers (all-MiniLM-L6-v2) - For text embeddings
+   - LLaMA 3.2 3B Instruct - Large Language Model for response generation
+
+4. VECTOR DATABASE
+   ----------------
+   - FAISS (Facebook AI Similarity Search) - For storing and searching embeddings
+
+5. API FRAMEWORK
+   --------------
+   - OpenAI API (Compatible) - Communication with LM Studio
+
+6. LLM HOSTING
+   ------------
+   - LM Studio - Local LLM inference server (http://localhost:1234)
+
+7. DATA FORMAT
+   ------------
+   - NumPy (.npy files) - For embedding storage
+   - Pickle (.pkl files) - For metadata storage
+   - JSONL files - For document metadata
+
+================================================================================
+
+ARCHITECTURE:
+================================================================================
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                              USER INTERFACE                                  │
+│                         (Streamlit Web App)                                  │
+│                      http://localhost:8501                                   │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                           VISA FORM INPUT                                    │
+│     Graduate | Student | Skilled Worker | Health & Care | Visitor           │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         RAG RETRIEVAL SYSTEM                                 │
+│              Sentence Transformers → FAISS Vector Search                     │
+│                        (307 Document Chunks)                                 │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         LLM RESPONSE GENERATION                              │
+│                    LLaMA 3.2 3B via LM Studio                                │
+│                      http://localhost:1234                                   │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                    │
+                                    ▼
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         ELIGIBILITY RESULT                                   │
+│              ✅ ELIGIBLE / ❌ NOT ELIGIBLE + Detailed Analysis               │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+================================================================================
+
+KEY FEATURES IMPLEMENTED:
+================================================================================
+
+1. ✅ Multiple Visa Type Support (5 types)
+2. ✅ Dynamic Form Fields based on visa type
+3. ✅ RAG-based Policy Retrieval
+4. ✅ Clear Eligibility Status (ELIGIBLE/NOT ELIGIBLE)
+5. ✅ Detailed Requirements Analysis
+6. ✅ Document Checklist
+7. ✅ Fee Information
+8. ✅ Processing Time Estimates
+9. ✅ Specific Checks (CAS, Financial, Experience, etc.)
+
+================================================================================
+
+HOW TO RUN:
+================================================================================
+
+1. Start LM Studio and load LLaMA 3.2 3B Instruct model
+2. Start local server in LM Studio (http://localhost:1234)
+3. Run command:
+   & "C:/Users/laksh/OneDrive/Desktop/pythonALML/venv/python.exe" -m streamlit run "C:\Users\laksh\OneDrive\Desktop\pythonALML\infosys\visa_form_app.py"
+4. Open browser: http://localhost:8501
+
+================================================================================
+
+DEPENDENCIES:
+================================================================================
+
+- streamlit
+- openai
+- sentence-transformers
+- faiss-cpu
+- numpy
+- pickle (built-in)
+
+================================================================================
+                                END OF DOCUMENT
+================================================================================
